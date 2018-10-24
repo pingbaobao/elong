@@ -1,0 +1,17 @@
+.hotel-list__tabel {
+    tbody {
+        th{
+            vertical-align: middle;
+            text-align: center;
+        }
+        tr {
+            td {
+                vertical-align: middle;
+                text-align: center;
+                button{
+                    float: left;
+                }
+            }
+        }
+    }
+}

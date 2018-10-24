@@ -1,0 +1,70 @@
+<div class="box hotel-list">
+    <div class="box-header with-border">
+      <h3 class="box-title">
+        <button id="addbtn" class="btn btn-block btn-success"><span class="fa fa-plus-circle"></span> 添加</button>
+      </h3>
+      <div class="box-tools">
+        <div class="input-group input-group-sm" style="width: 150px;">
+          <input type="text" id="keywords" value="" name="pos_search" class="form-control pull-right" placeholder="搜索">
+  
+          <div class="input-group-btn">
+            <button type="button" id="possearch" class="btn btn-default"><i class="fa fa-search"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.box-header -->
+    {{ if data.length > 0 }}
+    <div class="box-body">
+      
+      <table class="table table-bordered hotel-list__tabel">
+        <tr>
+          <th style="width: 10px">#</th>
+          <th>酒店图片</th>
+          <th>酒店名称</th>
+          <th>酒店位置</th>
+          <th>酒店类型</th>
+          <th>价格</th>
+          <th>发布时间</th>
+          <th style="width: 140px">操作</th>
+        </tr>
+        {{ each data }}
+        <tr>
+          <td>{{ $index + 1 }}</td>
+          <td>{{ $value.hotelImage }}</td>
+          <td>{{ $value.hotelName }}</td>
+          <td>{{ $value.location }}</td>
+          <td>{{ $value.hotelType }}</td>
+          <td>￥{{ $value.basePrice }}起</td>
+          <td>{{ $value.formatTime }}</td>
+          <td data-id="{{ $value._id }}">
+            <button class="btn btn-sm btn-primary hotel-update" posid="" pageno="" keywords=""><span class="fa fa-edit"></span>
+              修改</button>
+            <button class="btn btn-sm btn-danger hotel-remove" posid="" pageno="" pagecount="" pagesize="" keywords=""
+              filename=""><span class="fa fa-remove"></span> 删除</button>
+          </td>
+        </tr>
+        {{ /each }}
+      </table>
+      
+    </div>
+    <div class="box-footer clearfix">
+      <ul class="pagination pagination-sm no-margin pull-right">
+        <li><a href="#">&laquo;</a></li>
+        <li class="active"><a href="#">1</a></li>
+        <li><a href="#">&raquo;</a></li>
+      </ul>
+    </div>
+    {{ else }}
+      <div class="box box-default">
+          <div class="box-header with-border">
+            <!-- <h3 class="box-title">Blank Box</h3> -->
+          </div>
+          <div class="box-body">
+              当前暂无酒店信息
+          </div>
+          <!-- /.box-body -->
+        </div>
+      {{ /if }}
+  </div>
+  <!-- /.box -->
