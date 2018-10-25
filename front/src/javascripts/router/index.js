@@ -31,6 +31,8 @@ const _init = () => {
 
     router.route('/hotel-list', hotel_controller.list)
 
+    router.route('/hotel-update', hotel_controller.update)
+
    
 
 
@@ -49,13 +51,8 @@ const _init = () => {
     })
 
     // 给bus绑定事件
-    bus.on('go', (path) => {
-        router.go(path)
-    })
-    bus.on('back', () => {
-        router.back()
-    })  
-    
+    bus.on('go', (path, body = {}) =>  router.go(path, body) )
+    bus.on('back', () =>  router.back() )
 
     // 给按钮添加事件
     _navLink()
@@ -77,24 +74,8 @@ const _activeLink = (route) => {
     $navs.removeClass('active')
     $navs.filter(`[to='${route}']`)
          .addClass('active')
-           
 }
 export default {
     init: _init,
     navLink: _navLink
 }
-
-
-
-
-// router.route('/user/:id', (req, res, next) => {
-//   const { params, query, body , url, route } = req
-
-//   console.log(params.id) // output => 123
-//   console.log(query.name) // output => hwen
-//   console.log(body.mes) // output => hallo world
-//   console.log(url) // output => /user/123?name=hwen
-//   console.log(route) // output => /user/:id
-// })
-
-// router.go('/user/123?name=hwen', { mes: 'hallo world'})

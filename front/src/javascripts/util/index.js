@@ -1,9 +1,10 @@
-import handelToast from './handleToast';
+import handleToastByData from './handleToastByData';
 import bus from './bus';
+import toast from './toast'
 
-exports={handelToast,bus}
-
+export{handleToastByData,toast,bus}
 export default{
-    handelToast,
+    handleToastByData,
+    toast,
     bus
 }

@@ -4,13 +4,13 @@
     </div>
     <!-- /.box-header -->
     <!-- form start -->
-    <form class="form-horizontal" id="save-form">
+    <form class="form-horizontal" id="save-form" enctype="multipart/form-data">
         <div class="box-body">
-                <div class="form-group">
-                        <label for="hotelImage" class="col-sm-2 control-label">酒店图片</label>
-        
+                <div class="form-group ">
+                        <label for="hotelImage" class="col-sm-2 control-label ">酒店图片</label>
                         <div class="col-sm-10">
-                            <input required type="text" class="form-control" name="hotelImage" id="hotelImage" placeholder="请输入公司名字">
+                            <input   type="file"  name="hotelImage" id="hotelImageSelect" >
+                            <img src="" id="hotelImagePreview" alt="">
                         </div>
                     </div>
             <div class="form-group">
