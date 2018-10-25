@@ -6,12 +6,14 @@
     <!-- form start -->
     <form class="form-horizontal" id="update-form"  >
         <div class="box-body">
-            <div class="form-group">
-                <label for="hotelImage" class="col-sm-2 control-label ">酒店图片</label>
-                <div class="col-sm-10">
-                    <input type="file" name="hotelImage" id="hotelImageSelect">
-                    <img src="http://localhost:3000{{ data.hotelImage }}" id="hotelImagePreview" alt="">
-                </div>
+            <div class="form-group ">
+                    <label for="hotelImage" class="col-sm-2 control-label ">酒店图片</label>
+                    <div class="col-sm-10">
+                        <span id="chose_pic_btn">
+                            <input type="file" name="hotelImage" id="hotelImageSelect">
+                            <img src="http://localhost:3000{{ data.hotelImage }}" id="hotelImagePreview" alt="">
+                        </span>
+                    </div>
             </div>
             <div class="form-group">
                 <label for="hotelName" class="col-sm-2 control-label">酒店名称</label>
@@ -43,9 +45,9 @@
             </div>
             <div class="form-group">
                 <label  class="col-sm-2 control-label">是否重新发布</label>
-
-                <div class="col-sm-10">
-                    <input type="checkbox" name="republish" id="republish" >
+                <div class="col-sm-3  tg-list-item">
+                    <input type="checkbox" name="republish" id="republish" class="tgl tgl-ios" >
+                    <label class="tgl-btn " for="republish"></label>
                 </div>
             </div>
             <input type="hidden" name = "id" value="{{data._id}}"> 
