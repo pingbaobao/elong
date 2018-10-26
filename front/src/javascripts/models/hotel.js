@@ -41,13 +41,17 @@ const findOne=(data)=>{
     })
 }
 const update = (data) => {
-    return $.ajax({
-        url: '/api/v1/hotel/update',
-        type: 'post',
-        data,
-        success:(results) => {
-           return results
-        }
+    return new Promise((resolve) => {
+        $('.hotel-update #update-form').ajaxSubmit({
+            url: '/api/v1/hotel/update',
+            type: 'POST',
+            error:(result)=>{
+                console.log(result);
+            },
+            success: (results) => {
+                resolve(results)
+            }
+        })
     })
 }
 export default {

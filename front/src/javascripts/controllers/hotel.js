@@ -77,6 +77,7 @@ const update = async (req, res) => {
     })
     res.render(_html);
     bindUpdateEvent();
+    previewImage();
 }
 const bindUpdateEvent=()=>{
     $('.hotel-update #back').on('click', function () {
@@ -87,11 +88,8 @@ const bindUpdateEvent=()=>{
 //酒店信息修改控制
 const handelUpdateHotel=async function(e){
     e.preventDefault();
-    let _datastr=$(this).serialize();
-    let _data=qs.parse(_datastr);
-    let _result =await hotel_model.update(_data);
+    let _result =await hotel_model.update();
     handleToastByData(_result);
-    // bus.emit('go', '/position-list');
 }
 //酒店信息的移除
 const handelRemoveHotel=async function(){

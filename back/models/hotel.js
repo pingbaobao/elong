@@ -59,6 +59,7 @@ const findOne =async ({id})=>{
 }
 
 const update = (body) => {
+    if(!body.hotelImage) delete body.hotelImage;
     if(body.republish){
         let _timestamp = Date.now();
         let moment = Moment(_timestamp);
