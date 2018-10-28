@@ -1,13 +1,14 @@
 
-const list = () => {
+const list = (page) => {
     return $.ajax({
         url: '/api/v1/hotel/list',
+        data:page,
         success:(results) => {
            return results
         }
     })
 }
-
+//保存酒店信息
 const save = (data) => {
     return new Promise((resolve) => {
         $('.hotel-save #save-form').ajaxSubmit({

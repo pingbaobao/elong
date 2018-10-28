@@ -12,15 +12,40 @@ var hotel = mongoose.model('hotels', new mongoose.Schema({
     formatTime: String
 }));
 
+const listall = (query) => {
+    let _query=query||{};
+    return hotel.find(_query).
+           then((results) => {
+               return results
+           }).
+           catch((err) => {
+               return false
+           })
+}
 
-const list = () => {
-     return hotel.find({}).
-            then((results) => {
-                return results
-            }).
-            catch((err) => {
-                return false
-            })
+const list = async ({ pageNo = 1, pageSize = 10, search = '' }) => {
+    let re = new RegExp(search, 'i');
+    let _query = search ?  { hotelName: re } : {}// 查询的约定条件
+    let _all_items = await listall(_query)
+
+
+    return hotel.find(_query)
+    .sort({createTime: -1})
+    .skip((pageNo - 1) * pageSize)// 从哪一页开始
+    .limit(~~pageSize)// 截取多少
+    .then((results) => {
+        return { 
+            items: results, 
+            pageInfo: { // 页码信息
+                pageNo, // 当前页
+                pageSize, // 一页数量
+                total: _all_items.length, // 总数
+                totalPage: Math.ceil(_all_items.length / pageSize) // 总页数
+            }
+        }
+    }).catch((err) => {
+        return false
+    })
 }
 
 
@@ -75,6 +100,7 @@ const update = (body) => {
 }
 module.exports = {
     list,
+    listall,
     save,
     findOne,
     remove,

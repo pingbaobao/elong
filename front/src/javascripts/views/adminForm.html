@@ -1,0 +1,58 @@
+{{ if type == true }}
+<!-- 登陆的页面 -->
+<div >
+    <div class="form-top">
+        <div class="form-top-left">
+            <h3>登入本网站</h3>
+            <p>输入您的用户名和密码以登录:</p>
+        </div>
+        <div class="form-top-right">
+            <i class="fa fa-key"></i>
+        </div>
+    </div>
+    <div class="form-bottom">
+        <form   id="signin-form">
+            <div class="form-group">
+                <label class="sr-only" for="username"></label>
+                <input type="text" name="username" placeholder="Username" class="form-username form-control" >
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="password"></label>
+                <input type="password" name="password" placeholder="Password" class="form-password form-control">
+            </div>
+            <button type="submit" class="btn">登陆</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+{{ else }}
+<div >
+    <!-- 注册的页面 -->
+    <div class="form-top">
+        <div class="form-top-left">
+            <h3>注册本网站</h3>
+            <p>输入您的用户名和密码以注册:</p>
+        </div>
+        <div class="form-top-right">
+            <i class="fa fa-key"></i>
+        </div>
+    </div>
+    <div class="form-bottom">
+        <form  id="signup-form">
+            <div class="form-group">
+                <label class="sr-only" for="username"></label>
+                <input type="text" name="username" placeholder="Username" class="form-username form-control" >
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="password"></label>
+                <input type="password" name="password" placeholder="Password" class="form-password form-control">
+            </div>
+            <button type="submit" class="btn">注册</button>
+        </form>
+    </div>
+</div>
+
+{{ /if }}

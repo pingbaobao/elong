@@ -6,6 +6,7 @@ import home_template from '../views/home.html'
 import not_found_template from '../views/404.html'
 
 import hotel_controller from '../controllers/hotel'
+import map_controller from '../controllers/map'
 
 var router = null
 
@@ -33,6 +34,7 @@ const _init = () => {
 
     router.route('/hotel-update', hotel_controller.update)
 
+    router.route('/map', map_controller.map)
    
 
 

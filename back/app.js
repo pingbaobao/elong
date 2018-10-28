@@ -8,8 +8,9 @@ var { version } = require('./config')
 
 // 路由工具
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// var usersRouter = require('./routes/users');
 var hotelRouter = require('./routes/hotel');
+var adminRouter = require('./routes/admin');
 
 // 应用程序
 var app = express();
@@ -32,8 +33,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // 启用路由工具
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/api/'+ version +'/hotel', hotelRouter);
+app.use('/api/'+ version +'/admin', adminRouter);
 
 
 
