@@ -10,13 +10,14 @@ const modeSwitch = () => {
         flag = $(this).data('flag');
         adminRender(flag);
     })
+    bindEvent();
 }
 const adminRender = (flag) => {
     var _html = template.render(adminForm_template, {
         type:flag
     })
     $('.form-box').html(_html);
-    bindEvent();
+    
 }
 const bindEvent=()=>{
     // 注册表单

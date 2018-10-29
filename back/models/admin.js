@@ -1,7 +1,7 @@
 
-const mongoose = require('../util/mongoose')
-const bcrypt = require('bcrypt')
-const { hash } = require('../util')
+const mongoose = require('../util/mongoose');
+const bcrypt = require('bcrypt');
+// const { hash } = require('../util');
 
 var UserModel = mongoose.model('users', new mongoose.Schema({
     username: String,
@@ -11,8 +11,16 @@ var UserModel = mongoose.model('users', new mongoose.Schema({
 
 // 注册，存入数据到数据库password
 const signup = async ({ username, password }) => {
-    let _password = await hash(password)
+    // let _password = await hash(password);
     // 应该对密码进行加密之后再存储，可以利用node内置模块crypto，
+    const saltRounds = 10;
+    //随机生成salt
+    const salt = bcrypt.genSaltSync(saltRounds);
+    //获取hash值
+    var hash = bcrypt.hashSync(password, salt);
+     //把hash值赋值给password变量
+    let _password = hash;
+
     return new UserModel({
         username,
         password: _password,
@@ -20,22 +28,16 @@ const signup = async ({ username, password }) => {
     })
     .save()
     .then((results) => {
-        console.log(results,1);
         let { _id, username } = results
         return { _id, username}
     })
     .catch(() => {
-        console.log(results,2);
-        return false
+        return false;
     })
 }
 
-// 登录
-// @param pwd 是用户传入的密码
-// @param password 是此用户的加密密码
-// :result 是否匹配
 const signin = async (pwd, { password }) => {
-    return bcrypt.compare(pwd, password)
+    return bcrypt.compareSync(pwd, password);
 }
 
 
@@ -44,7 +46,7 @@ const judgeUserByUsername = (username) => {
     return UserModel
     .find({ username })
     .then((results) => {
-        return results
+        return results;
     })
     .catch(() => {
         return false

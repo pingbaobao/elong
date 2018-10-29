@@ -31,12 +31,10 @@ const hash = (textplain) => {
     return new Promise((resolve) => {
         bcrypt.genSalt(saltRounds, function(err, salt) {
             bcrypt.hash(textplain, salt, function(err, hash) {
-                // Store hash in your password DB.
                 resolve(hash)
             });
         });
     })
-    
 }
 
 
