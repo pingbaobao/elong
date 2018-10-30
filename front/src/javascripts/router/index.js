@@ -24,7 +24,7 @@ const _init = () => {
     // 处理page header的中间件
 
      // 保证都能匹配到，中间都能执行
-     router.route('/', renderPageHeader)
+     router.route('/#/', renderPageHeader)
 
     router.route('/home', (req, res, next) => { // 当路由切换进来的时候执行
         res.render(home_template)

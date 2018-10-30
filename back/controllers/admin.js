@@ -30,8 +30,8 @@ const signin = async (req, res, next) => {
         // console.log(_data);
         if (_data) {
                req.session.userInfo={
-                    id:_data._id,
-                    username:_data.username,
+                    id:_judge_result[0]._id,
+                    level:_judge_result[0].level||8
                }
             res.render('admin', { code: 200, data: JSON.stringify('success') })
         } else {

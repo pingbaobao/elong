@@ -8,6 +8,14 @@ const list = (page) => {
         }
     })
 }
+const listall = () => {
+    return $.ajax({
+        url: '/api/v1/hotel/listall',
+        success:(results) => {
+           return results
+        }
+    })
+}
 //保存酒店信息
 const save = (data) => {
     return new Promise((resolve) => {
@@ -60,7 +68,8 @@ export default {
     save,
     remove,
     findOne,
-    update
+    update,
+    listall
 }
 
 

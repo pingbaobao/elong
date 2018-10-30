@@ -37,7 +37,8 @@ const bindEvent=()=>{
     })
     // 登录表单
     $('#admin-content').on('submit', '#signin-form', async function (e) {
-        e.preventDefault()
+        e.preventDefault();
+        $.cookie('connect.sid', { expires: -1 });
         let _params = $(this).serialize();
         let _result = await admin_model.signin(qs.parse(_params));
         console.log(_result);
@@ -45,7 +46,6 @@ const bindEvent=()=>{
             case 203: toast('密码错误'); break;
             case 202:  toast('用户不存在'); break;
             default: 
-                localStorage.user = qs.parse(_params).username
                 window.location.href = "/"; 
             break;
         }
