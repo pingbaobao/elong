@@ -23,17 +23,17 @@ app.set('view engine', 'ejs');
 
 
 //使用express-session插件
-app.use(session({
-  secret: 'keyboard cat',//这是秘钥
-  resave: false,
-  saveUninitialized: true,
-  cookie: { 
-    path: '/',//发送的cookies路径
-    httpOnly: true,//是否http请求
-     secure: false,
-      maxAge: 1000*60*60 //设置过期的时间,以ms为单位
-  }
-}))
+// app.use(session({
+//   secret: 'keyboard cat',//这是秘钥
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: { 
+//     path: '/',//发送的cookies路径
+//     httpOnly: true,//是否http请求
+//      secure: false,
+//       maxAge: 1000*60*60 //设置过期的时间,以ms为单位
+//   }
+// }))
 
 // 使用各种中间件
 app.use(logger('dev'));

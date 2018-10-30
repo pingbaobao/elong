@@ -1,23 +1,19 @@
+const jwt=require('jsonwebtoken');
 const user_model=require('../models/user');
+const fs  = require('fs');
+const PATH  = require('path');
 const isSignin =(req,res)=>{
-    if(req.session.userInfo){
        res.render('user',{
            code:200,
            data:JSON.stringify({
                msg:"用户已经登录了"
            })
        })
-    }else{
-        res.render('user',{
-            code:403,
-            data:JSON.stringify({
-                msg:"用户未登录，请重新登录"
-            })
-        })
-    }
 }
 const userinfo= async(req,res)=>{
-    let userId=req.session.userInfo.id;
+    var _decoded = jwt.verify(req.cookies.token, 'hahaha');
+    console.log(_decoded,555);
+    let userId=_decoded.id;
     let _result=await user_model.getUserInfoById(userId);
     res.render('user',{
         code:200,
@@ -38,7 +34,9 @@ const exit=(req,res)=>{
 }
 const auth=async (req,res)=>{
     let _site=await user_model.levels()[req.query.site];
-    let _auth=req.session.userInfo.level>=_site;
+    let _public=fs.readFileSync(PATH.resolve(__dirname,'../keys/public.key'));
+    var _decoded = jwt.verify(req.cookies.token,_public, {algorithm: 'RS256'});
+    let _auth=_decoded.level>=_site;
     res.render('user',{
         code:_auth?200:402,
         data:JSON.stringify({

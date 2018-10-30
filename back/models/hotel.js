@@ -73,6 +73,7 @@ const remove =async ({id})=>{
     }).catch((err)=>{
         return false;
     })
+    
 }
 const findOne =async ({id})=>{
     return hotel.findById(id).

@@ -10,7 +10,7 @@ const renderUserInfo=async ()=>{
     $('.exit-btn').click(async function(){
         let _result=await user_model.exit();
         if ( _result.status === 200 ) {
-            $.cookie('connect.sid', { expires: -1 })
+            $.cookie('token', { expires: -1 })
             window.location.href = '/admin.html'
         }
     })

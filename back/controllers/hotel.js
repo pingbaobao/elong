@@ -12,7 +12,7 @@ const listall = async (req, res) => {
     let _data = await hotel_model.listall();
     handleData(_data, res, 'hotel');
 }
-// 添加职位
+// 添加
 const save = async (req, res) => {
     // 接收到发送过来的数据 req.body, 然后存入数据库
     res.set('content-type', 'application/json; charset=utf8')
