@@ -1,10 +1,15 @@
 const admin_model = require('../models/admin');
+<<<<<<< HEAD
 const fs  = require('fs');
 const PATH  = require('path');
 const {
     handleData
 } = require('../util');
 const jwt = require("jsonwebtoken");
+=======
+const { handleData } = require('../util');
+const jwt=require('jsonwebtoken');
+>>>>>>> 3728b91f98358b759b845516a93cee122f89717f
 const signup = async (req, res, next) => {
     // 先判断有没有这个用户 
     let _judge_result = await admin_model.judgeUserByUsername(req.body.username)
@@ -34,6 +39,7 @@ const signin = async (req, res, next) => {
         // 如果前端利用完整的表单提交逻辑的话，可以利用res.redirect告知浏览器进行跳转
         // console.log(_data);
         if (_data) {
+<<<<<<< HEAD
             let _payload = {
                 id: _judge_result[0]._id,
                 username: _judge_result[0].username,
@@ -46,6 +52,19 @@ const signin = async (req, res, next) => {
                 code: 200,
                 data: JSON.stringify("登录成功")
             })
+=======
+               let _payload={//加密的数据
+                   id:_judge_result[0]._id,
+                   username:_judge_result[0].username,
+                   level:_judge_result[0].level||6
+               }
+               let _cert="haha";
+               jwt.sign(_payload,_cert);
+            res.render('admin', { code: 200, data: JSON.stringify({
+                token,
+                result:"success"
+            }) })
+>>>>>>> 3728b91f98358b759b845516a93cee122f89717f
         } else {
             res.render('admin', {
                 code: 203,
