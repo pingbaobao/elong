@@ -39,6 +39,7 @@ const exit=(req,res)=>{
 const auth=async (req,res)=>{
     let _site=await user_model.levels()[req.query.site];
     let _auth=req.session.userInfo.level>=_site;
+    console.log(req.session.userInfo.level,_site)
     res.render('user',{
         code:_auth?200:402,
         data:JSON.stringify({
@@ -46,9 +47,52 @@ const auth=async (req,res)=>{
         })
     })
 }
+//获取所有用户信息
+const userlist=async (req,res)=>{
+    let _result=await user_model.userlist();
+    res.render('user',{
+        code:200,
+        data:JSON.stringify(_result)
+    })
+}
+const userremove=async(req,res)=>{ 
+    console.log(req.query)
+    let _result=await user_model.userremove(req.query);
+    
+    res.render('user',{
+        code:200,
+        data:JSON.stringify(_result)
+    })
+}
+const findOne=async(req,res)=>{
+    let _result=await user_model.findOne(req.query);
+    res.render('user',{
+        code:200,
+        data:JSON.stringify(_result)
+    })
+}
+const userupdate=async(req,res,next)=>{
+    res.set('content-type', 'application/json; charset=utf8');
+    req.session.userInfo={
+        id:req.body._id,
+        level:req.body.level
+    }
+    let _result=await user_model.userupdate(req.body);
+    console.log(_result);
+    res.render('user',{
+        code:200,
+        data:JSON.stringify({
+            msg:"用户信息修改成功"
+        })
+    })
+}
 module.exports={
    isSignin,
    userinfo,
    exit,
-   auth 
+   auth,
+   userlist,
+   userremove,
+   findOne,
+   userupdate 
 }

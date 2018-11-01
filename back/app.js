@@ -40,6 +40,7 @@ app.use(logger('dev'));
 // body-parser 处理form-data和request payload数据
 // express 4.X 内部集成了body-parser
 app.use(express.json());
+
 app.use(express.urlencoded({ extended: false }));
 
 app.use(cookieParser());// 解析cookie
@@ -50,7 +51,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // 启用路由工具
 app.use('/', indexRouter);
 app.use('/api/'+ version +'/hotel', hotelRouter);
+
 app.use('/api/'+ version +'/admin', adminRouter);
+
 app.use('/api/'+ version +'/user', userRouter);
 
 

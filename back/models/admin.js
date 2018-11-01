@@ -6,7 +6,8 @@ const bcrypt = require('bcrypt');
 var UserModel = mongoose.model('users', new mongoose.Schema({
     username: String,
     password: String,
-    signupTime: String
+    signupTime: String,
+    level:String
 }));
 
 // 注册，存入数据到数据库password
@@ -24,7 +25,8 @@ const signup = async ({ username, password }) => {
     return new UserModel({
         username,
         password: _password,
-        signupTime: Date.now()
+        signupTime: Date.now(),
+        level:3
     })
     .save()
     .then((results) => {
@@ -57,5 +59,5 @@ const judgeUserByUsername = (username) => {
 module.exports = {
     signup,
     signin,
-    judgeUserByUsername
+    judgeUserByUsername,
 }

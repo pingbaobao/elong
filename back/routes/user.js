@@ -14,6 +14,11 @@ router.get('/isSignin',user_controller.isSignin);
 router.get('/userinfo', auth.userState,user_controller.userinfo);
 router.get('/exit',user_controller.exit);
 router.get('/auth', auth.userState,user_controller.auth);
+router.get('/userlist', auth.userState,user_controller.userlist);
+router.get('/userremove', auth.userState,user_controller.userremove);
+router.get('/findOne', auth.userState,user_controller.findOne);
+router.post('/userupdate',auth.userState,user_controller.userupdate);
+
 module.exports = router;
 
 
