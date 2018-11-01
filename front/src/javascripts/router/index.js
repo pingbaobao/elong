@@ -1,5 +1,4 @@
 import SMERouter from 'sme-router';
-
 import bus from '../util/bus';
 import page_header_model from '../models/page-header';
 import home_template from '../views/home.html';
@@ -7,6 +6,7 @@ import not_found_template from '../views/404.html';
 import page_header_controller from '../controllers/page-header';
 import hotel_controller from '../controllers/hotel';
 import map_controller from '../controllers/map';
+import usermanage_controller from '../controllers/usermanage';
 
 var router = null;
 var prevUrl = ''
@@ -27,16 +27,19 @@ const _init = () => {
      router.route('/#/', renderPageHeader)
 
     router.route('/home', (req, res, next) => { // 当路由切换进来的时候执行
-        res.render(home_template)
+        res.render(home_template);
     })
 
-    router.route('/hotel-save', hotel_controller.save)
+    router.route('/hotel-save', hotel_controller.save);
 
-    router.route('/hotel-list', hotel_controller.list)
+    router.route('/hotel-list', hotel_controller.list);
 
-    router.route('/hotel-update', hotel_controller.update)
+    router.route('/hotel-update', hotel_controller.update);
 
-    router.route('/map', map_controller.map)
+    router.route('/map', map_controller.map);
+
+    router.route('/usermanage', usermanage_controller.usermanage);
+    router.route('/user-update', usermanage_controller.userupdate);
    
 
 

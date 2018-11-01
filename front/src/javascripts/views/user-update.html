@@ -1,0 +1,40 @@
+<div class="box box-info user-update">
+    <div class="box-header with-border">
+        <h3 class="box-title">修改用户信息</h3>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form class="form-horizontal" id="updateuser-form">
+        <div class="box-body">
+            <div class="form-group">
+                <label for="username" class="col-sm-2 control-label">用户名</label>
+
+                <div class="col-sm-10">
+                    <input required type="text" class="form-control" name="username" id="username"  value="{{ data.username }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="level" class="col-sm-2 control-label">用户权限</label>
+
+                <div class="col-sm-10">
+                    <input type="number" min="1" max="9" class="form-control" name="level" id="level" value="{{ data.level }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-sm-2 control-label">用户密码</label>
+
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" name="password" id="password" value="{{ data.password }}">
+                </div>
+            </div>
+            <input type="hidden" name = "id" value="{{data._id}}"> 
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+            <button type="button" id="back" class="btn btn-default">返回列表</button>
+            <button type="submit" id="update-user" class="btn btn-info pull-right">提交</button>
+            <button type="reset" class="btn btn-default pull-right" style="margin-right: 15px">重置</button>
+        </div>
+        <!-- /.box-footer -->
+    </form>
+</div>
